@@ -13,7 +13,10 @@
 @interface SFViewController : UIViewController
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (strong, nonatomic) IBOutlet UIView *movingView;
 
 -(void)bubblePop;
+
+- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer;
 
 @end

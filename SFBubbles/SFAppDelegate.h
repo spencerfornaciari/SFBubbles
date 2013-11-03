@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
+
+@class SFViewController;
 
 @interface SFAppDelegate : UIResponder <UIApplicationDelegate>
+{
+    
+    CMMotionManager *motionManager;
+}
+
+@property (readonly) CMMotionManager *motionManager;
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) SFViewController *viewController;
 
 @end
