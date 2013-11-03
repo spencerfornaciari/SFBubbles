@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
+#import "UIColor+ColorAddons.h"
 
 @interface SFViewController : UIViewController
+
+@property (strong, nonatomic) CMMotionManager *motionManager;
+
+-(void)bubblePop;
 
 @end

@@ -21,6 +21,7 @@
 		89322D6B1825E6F700EA01F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89322D4D1825E6F700EA01F0 /* UIKit.framework */; };
 		89322D731825E6F700EA01F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89322D711825E6F700EA01F0 /* InfoPlist.strings */; };
 		89322D751825E6F700EA01F0 /* SFBubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89322D741825E6F700EA01F0 /* SFBubblesTests.m */; };
+		89322D801825F42900EA01F0 /* UIColor+ColorAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 89322D7F1825F42900EA01F0 /* UIColor+ColorAddons.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		89322D701825E6F700EA01F0 /* SFBubblesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SFBubblesTests-Info.plist"; sourceTree = "<group>"; };
 		89322D721825E6F700EA01F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89322D741825E6F700EA01F0 /* SFBubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBubblesTests.m; sourceTree = "<group>"; };
+		89322D7E1825F42900EA01F0 /* UIColor+ColorAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorAddons.h"; sourceTree = "<group>"; };
+		89322D7F1825F42900EA01F0 /* UIColor+ColorAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorAddons.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 		89322D4F1825E6F700EA01F0 /* SFBubbles */ = {
 			isa = PBXGroup;
 			children = (
+				89322D7E1825F42900EA01F0 /* UIColor+ColorAddons.h */,
+				89322D7F1825F42900EA01F0 /* UIColor+ColorAddons.m */,
 				89322D581825E6F700EA01F0 /* SFAppDelegate.h */,
 				89322D591825E6F700EA01F0 /* SFAppDelegate.m */,
 				89322D5B1825E6F700EA01F0 /* Main.storyboard */,
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89322D801825F42900EA01F0 /* UIColor+ColorAddons.m in Sources */,
 				89322D561825E6F700EA01F0 /* main.m in Sources */,
 				89322D601825E6F700EA01F0 /* SFViewController.m in Sources */,
 				89322D5A1825E6F700EA01F0 /* SFAppDelegate.m in Sources */,
