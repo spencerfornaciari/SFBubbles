@@ -15,13 +15,8 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) IBOutlet UIView *movingView;
-@property (strong, nonatomic) IBOutlet UIView *bubbleOne;
-@property (strong, nonatomic) IBOutlet UIView *bubbleTwo;
-@property (strong, nonatomic) IBOutlet UIView *bubbleFour;
 
-@property (strong, nonatomic) SFBubbleView *bubbleThree;
 
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *bubbleCollection;
 
 -(void)bubblePop;
 
