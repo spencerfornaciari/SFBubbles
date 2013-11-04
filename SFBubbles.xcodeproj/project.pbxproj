@@ -22,6 +22,7 @@
 		89322D731825E6F700EA01F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89322D711825E6F700EA01F0 /* InfoPlist.strings */; };
 		89322D751825E6F700EA01F0 /* SFBubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89322D741825E6F700EA01F0 /* SFBubblesTests.m */; };
 		89322D801825F42900EA01F0 /* UIColor+ColorAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 89322D7F1825F42900EA01F0 /* UIColor+ColorAddons.m */; };
+		89E4DA401827299700D217C5 /* SFBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E4DA3F1827299700D217C5 /* SFBubbleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		89322D741825E6F700EA01F0 /* SFBubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFBubblesTests.m; sourceTree = "<group>"; };
 		89322D7E1825F42900EA01F0 /* UIColor+ColorAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorAddons.h"; sourceTree = "<group>"; };
 		89322D7F1825F42900EA01F0 /* UIColor+ColorAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorAddons.m"; sourceTree = "<group>"; };
+		89E4DA3E1827299700D217C5 /* SFBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBubbleView.h; sourceTree = "<group>"; };
+		89E4DA3F1827299700D217C5 /* SFBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBubbleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				89322D5F1825E6F700EA01F0 /* SFViewController.m */,
 				89322D611825E6F700EA01F0 /* Images.xcassets */,
 				89322D501825E6F700EA01F0 /* Supporting Files */,
+				89E4DA3E1827299700D217C5 /* SFBubbleView.h */,
+				89E4DA3F1827299700D217C5 /* SFBubbleView.m */,
 			);
 			path = SFBubbles;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			files = (
 				89322D801825F42900EA01F0 /* UIColor+ColorAddons.m in Sources */,
 				89322D561825E6F700EA01F0 /* main.m in Sources */,
+				89E4DA401827299700D217C5 /* SFBubbleView.m in Sources */,
 				89322D601825E6F700EA01F0 /* SFViewController.m in Sources */,
 				89322D5A1825E6F700EA01F0 /* SFAppDelegate.m in Sources */,
 			);
@@ -467,6 +473,7 @@
 				89322D7A1825E6F700EA01F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		89322D7B1825E6F700EA01F0 /* Build configuration list for PBXNativeTarget "SFBubblesTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +482,7 @@
 				89322D7D1825E6F700EA01F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
