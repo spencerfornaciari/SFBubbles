@@ -15,12 +15,15 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) IBOutlet UIView *movingView;
+@property (strong, nonatomic) SFBubbleView *bubbleOne;
+@property (strong, nonatomic) IBOutlet SFBubbleView *bubbleTwo;
 
 @property (readonly) BOOL accelerometerAvailable;
 @property (readonly) BOOL gyroAvailable;
 @property (readonly) BOOL deviceMotionAvailable;
 
--(void)bubblePop;
+-(void)bubblesAllPopped;
+-(void)createBubbles;
 
 //- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer;
 

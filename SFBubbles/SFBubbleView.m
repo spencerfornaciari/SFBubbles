@@ -19,12 +19,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+        //Create tap responder
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
         tapGestureRecognizer.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGestureRecognizer];
-       // UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
         
-        self.layer.cornerRadius = 25.f;
+
+        //Add Gravity and collision support for the bubble
         _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
         _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
         [_animator addBehavior:_gravity];
@@ -32,6 +33,8 @@
         _collision.translatesReferenceBoundsIntoBoundary = YES;
         [_animator addBehavior:_collision];
         
+        
+        //Create sub-bubbles
         for (int i = 0; i<3; i++)
         {
             CGFloat xPos = i * 20 + 10;
@@ -49,19 +52,22 @@
         }
     }
     
+    //Define attributes of the bubble
+    self.layer.cornerRadius = 25.f;
     self.backgroundColor = [UIColor getRandomColor];
     return self;
 }
 
 
-
+//Create a pop up alert when the bubbles are popped
 -(void)bubblePop
 {
     UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Hurray!" message:@"You've popped a bubble" delegate:self cancelButtonTitle:@"Do it Again?" otherButtonTitles:nil, nil];
     [alertview show];
 }
 
-- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+//Call bubble pop alert message and remove it from the sub-view
+-(void)handleTapFrom:(UITapGestureRecognizer *)recognizer
 {
     //Code to handle the gesture
     [self bubblePop];
@@ -72,7 +78,7 @@
 //    }
     [recognizer.self.view removeFromSuperview];
     
-    NSLog(@"%@", recognizer);
+   // NSLog(@"%@", recognizer);
 }
 
 @end

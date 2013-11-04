@@ -24,123 +24,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect firstRect = CGRectMake(50, 50, 125, 136);
+    self.bubbleOne = [[SFBubbleView alloc] initWithFrame:firstRect];
+    self.bubbleOne.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:self.bubbleOne];
 	// Do any additional setup after loading the view, typically from a nib.
     
-   // UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
-  // tapGestureRecognizer.delegate = self;
-    
+    //Creating gravity and collision for the bubbles
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
     [_animator addBehavior:_gravity];
     _collision = [[UICollisionBehavior alloc] initWithItems:nil];
     _collision.translatesReferenceBoundsIntoBoundary = YES;
     [_animator addBehavior:_collision];
+    
+    [_gravity addItem:self.bubbleOne];
+    [_collision addItem:self.bubbleOne];
 
     //Creating bubbles and sub-bubbles
-    for (int i = 0; i < 6; i++)
-    {
-        CGFloat xPos = arc4random_uniform(300);
-        CGFloat yPos = arc4random_uniform(300);
-        CGFloat width = 100;
-        CGFloat height = 100;
-        
-        CGRect viewRect = CGRectMake (xPos, yPos, width, height);
-        SFBubbleView *newView = [[SFBubbleView alloc] initWithFrame:viewRect];
-        //[newView addGestureRecognizer:tapGestureRecognizer];
-        [self.view addSubview:newView];
-        [_gravity addItem:newView];
-        [_collision addItem:newView];
-    }
-    
+    [self createBubbles];
 
-//    CGRect firstRect = CGRectMake(50, 50, 100, 100);
-//    firstView = [[UIView alloc] initWithFrame:firstRect];
-//    firstView.backgroundColor = [UIColor redColor];
-//    firstView.layer.cornerRadius = 25.f;
-//    [self.view addSubview:firstView];
-//    
-//    CGRect newRect = CGRectMake(220, 10, 100, 100);
-//    self.bubbleThree = [[SFBubbleView alloc] initWithFrame:newRect];
-//    [self.view addSubview:self.bubbleThree];
-//    
-//    [self.bubbleThree addGestureRecognizer:tapGestureRecognizer];
-//    
-//    
-//    [firstView addGestureRecognizer:tapGestureRecognizer];
-//    tapGestureRecognizer.numberOfTapsRequired = 1;
-//    tapGestureRecognizer.delegate = self;
-//    
-//    CGRect thirdRect = CGRectMake(110, 0, 100, 100);
-//    UIView *thirdView = [[UIView alloc] initWithFrame:thirdRect];
-//    thirdView.backgroundColor = [UIColor blueColor];
-//    thirdView.layer.cornerRadius = 25.f;
-//    [self.view addSubview:thirdView];
-    
-//    _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-//    _gravity = [[UIGravityBehavior alloc] initWithItems:@[firstView, self.bubbleOne, self.bubbleTwo, self.bubbleFour, self.movingView, self.bubbleThree]];
-//    [_animator addBehavior:_gravity];
-//    _collision = [[UICollisionBehavior alloc] initWithItems:@[firstView, self.bubbleOne, self.bubbleTwo, self.bubbleFour, self.movingView, self.bubbleThree]];
-//    _collision.translatesReferenceBoundsIntoBoundary = YES;
-//    [_animator addBehavior:_collision];
-//    [_gravity addItem:thirdView];
-//    [_collision addItem:thirdView];
-    
-//    CGRect secondRect = CGRectMake(80, 0, 20, 20);
-//    UIView *secondView = [[UIView alloc] initWithFrame:secondRect];
-//    secondView.backgroundColor = [UIColor greenColor];
-//    [firstView addSubview:secondView];
-//    _animator2 = [[UIDynamicAnimator alloc] initWithReferenceView:firstView];
-//    _gravity2 = [[UIGravityBehavior alloc] initWithItems:@[secondView]];
-//    [_animator2 addBehavior:_gravity2];
-//    _collison2 = [[UICollisionBehavior alloc] initWithItems:@[secondView]];
-//    _collison2.translatesReferenceBoundsIntoBoundary = YES;
-//    [_animator2 addBehavior:_collison2];
-//    
-//    
-//    for (int i = 0; i<3; i++)
-//    {
-//        CGFloat xPos = i * 10 + 10;
-//        CGFloat yPos = arc4random_uniform(100);
-//        CGFloat width = 20;
-//        CGFloat height = 20;
-//        
-//        CGRect viewRect = CGRectMake (xPos, yPos, width, height);
-//        UIView *newView = [[UIView alloc] initWithFrame:viewRect];
-//        newView.backgroundColor = [UIColor getRandomColor];
-//        [firstView addSubview:newView];
-//        [_gravity2 addItem:newView];
-//        [_collison2 addItem:newView];
-//    }
-//        
-//    
-//    CGRect fourthRect = CGRectMake(80, 0, 20, 20);
-//    UIView *fourthView = [[UIView alloc] initWithFrame:fourthRect];
-//    fourthView.backgroundColor = [UIColor orangeColor];
-//    [thirdView addSubview:fourthView];
-//    _animator3 = [[UIDynamicAnimator alloc] initWithReferenceView:thirdView];
-//    _gravity3 = [[UIGravityBehavior alloc] initWithItems:@[fourthView]];
-//    [_animator3 addBehavior:_gravity3];
-//    _collison3 = [[UICollisionBehavior alloc] initWithItems:@[fourthView]];
-//    _collison3.translatesReferenceBoundsIntoBoundary = YES;
-//    [_animator3 addBehavior:_collison3];
-//    
-//    for (int i = 0; i<3; i++)
-//    {
-//        CGFloat xPos = i * 10 + 10;
-//        CGFloat yPos = arc4random_uniform(100);
-//        CGFloat width = 20;
-//        CGFloat height = 20;
-//        
-//        CGRect viewRect = CGRectMake (xPos, yPos, width, height);
-//        UIView *newView = [[UIView alloc] initWithFrame:viewRect];
-//        newView.backgroundColor = [UIColor getRandomColor];
-//        [thirdView addSubview:newView];
-//        [_gravity3 addItem:newView];
-//        [_collison3 addItem:newView];
-//        
-//    }
-    
     // Do any additional setup after loading the view, typically from a nib
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //NSLog(@"The subvies are currently: %@", self.view.subviews.description);
 
 }
 
@@ -149,7 +60,13 @@
     
     [super viewDidAppear:animated];
     
-    //[self startMyMotionDetect];
+    //NSLog(@"There are currently: %d subviews", self.view.subviews.count);
+    
+    if (self.view.subviews.count < 3) {
+        [self bubblesAllPopped];
+    }
+    
+    [self startMyMotionDetect];
     
 }
 
@@ -168,10 +85,30 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)bubblePop
+#pragma mark - Bubble methods
+
+-(void)bubblesAllPopped
 {
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Hurray!" message:@"You've popped a bubble" delegate:self cancelButtonTitle:@"Do it Again?" otherButtonTitles:nil, nil];
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Boo!" message:@"You've popped all the bubbles :-(" delegate:self cancelButtonTitle:@"Start over?" otherButtonTitles:nil, nil];
     [alertview show];
+    [self createBubbles];
+}
+
+-(void)createBubbles
+{
+    for (int i = 0; i < 6; i++)
+    {
+        CGFloat xPos = arc4random_uniform(300);
+        CGFloat yPos = arc4random_uniform(300);
+        CGFloat width = 100;
+        CGFloat height = 100;
+        
+        CGRect viewRect = CGRectMake (xPos, yPos, width, height);
+        SFBubbleView *newView = [[SFBubbleView alloc] initWithFrame:viewRect];
+        [self.view addSubview:newView];
+        [_gravity addItem:newView];
+        [_collision addItem:newView];
+    }
 }
 
 //- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
@@ -189,6 +126,8 @@
 //    NSLog(@"%@", recognizer);
 //}
 
+#pragma mark - Core Motion Code
+
 - (CMMotionManager *)motionManager
 {
     CMMotionManager *motionManager = nil;
@@ -202,45 +141,43 @@
     return motionManager;
 }
 
-//- (void)startMyMotionDetect
-//{
-//    __block float stepMoveFactor = 15;
-//    
-//    [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
-//                                             withHandler:^(CMAccelerometerData *data, NSError *error)
-//     {
-//         dispatch_async(dispatch_get_main_queue(),
-//                        ^{
-//                            //CGRect firstRect = CGRectMake(50, 50, 100, 100);
-//                            //_testBubble = [[SFBubbleView alloc] initWithFrame:firstRect];
-//                            
-//                            CGRect rect = self.movingView.frame;
-//                            
-//                            float movetoX = rect.origin.x + (data.acceleration.x * stepMoveFactor);
-//                            float maxX = self.view.frame.size.width - rect.size.width;
-//                            
-//                            float movetoY = (rect.origin.y + rect.size.height) - (data.acceleration.y * stepMoveFactor);
-//                            float maxY = self.view.frame.size.height;
-//                            
-//                            if ( movetoX > 0 && movetoX < maxX ) {rect.origin.x += (data.acceleration.x * stepMoveFactor);};
-//                            if ( movetoY > self.movingView.frame.size.height && movetoY < maxY ) {rect.origin.y -= (data.acceleration.y * stepMoveFactor);};
-//                            
-//                            [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:
-//                             ^{
-//                                 self.movingView.frame = rect;
-//                                 
-//                                 
-//                             }
-//                                             completion:nil
-//                             
-//                             ];
-//                            
-//                        });
-//     }
-//     ];
-//    
-//    
-//}
+- (void)startMyMotionDetect
+{
+    __block float stepMoveFactor = 15;
+    
+    [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
+                                             withHandler:^(CMAccelerometerData *data, NSError *error)
+     {
+         dispatch_async(dispatch_get_main_queue(),
+                        ^{
+                            
+                            CGRect rect = self.bubbleOne.frame;
+                            NSLog(@"%@", NSStringFromCGRect(rect));
+                            
+                            float movetoX = rect.origin.x + (data.acceleration.x * stepMoveFactor);
+                            float maxX = self.view.frame.size.width - rect.size.width;
+                            
+                            float movetoY = (rect.origin.y + rect.size.height) - (data.acceleration.y * stepMoveFactor);
+                            float maxY = self.view.frame.size.height;
+                            
+                            if ( movetoX > 0 && movetoX < maxX ) {rect.origin.x += (data.acceleration.x * stepMoveFactor);};
+                            if ( movetoY > self.movingView.frame.size.height && movetoY < maxY ) {rect.origin.y -= (data.acceleration.y * stepMoveFactor);};
+                            
+                            [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:
+                             ^{
+                                 self.bubbleOne.frame = rect;
+                             }
+                                             completion:nil
+                             
+                             ];
+                            
+                        });
+     }
+     ];
+    
+    
+}
+
 
 - (void)viewDidUnload {
     [self setMovingView:nil];

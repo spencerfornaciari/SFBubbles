@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+ColorAddons.h"
 
+
 @interface SFBubbleView : UIView
 
 -(void)bubblePop;
-- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer;
+-(void)handleTapFrom:(UITapGestureRecognizer *)recognizer;
 
 @end
