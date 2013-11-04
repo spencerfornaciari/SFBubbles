@@ -19,8 +19,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+         UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+        tapGestureRecognizer.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tapGestureRecognizer];
+       // UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+        
         self.layer.cornerRadius = 25.f;
         _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
         _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
@@ -31,8 +34,8 @@
         
         for (int i = 0; i<3; i++)
         {
-            CGFloat xPos = i * 10 + 10;
-            CGFloat yPos = arc4random_uniform(100);
+            CGFloat xPos = i * 20 + 10;
+            CGFloat yPos = i * 20 + 10;
             CGFloat width = 20;
             CGFloat height = 20;
             
@@ -50,5 +53,26 @@
     return self;
 }
 
+
+
+-(void)bubblePop
+{
+    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Hurray!" message:@"You've popped a bubble" delegate:self cancelButtonTitle:@"Do it Again?" otherButtonTitles:nil, nil];
+    [alertview show];
+}
+
+- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+{
+    //Code to handle the gesture
+    [self bubblePop];
+//    for (UIView *subview in [recognizer.self.view subviews]) {
+//        [self.view addSubview:subview];
+//        [_gravity addItem:subview];
+//        [_collision addItem:subview];
+//    }
+    [recognizer.self.view removeFromSuperview];
+    
+    NSLog(@"%@", recognizer);
+}
 
 @end

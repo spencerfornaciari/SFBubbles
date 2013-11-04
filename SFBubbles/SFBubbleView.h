@@ -11,6 +11,7 @@
 
 @interface SFBubbleView : UIView
 
+-(void)bubblePop;
 - (void) handleTapFrom: (UITapGestureRecognizer *)recognizer;
 
 @end

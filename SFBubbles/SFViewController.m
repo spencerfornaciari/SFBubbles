@@ -18,6 +18,7 @@
     UIGravityBehavior* _gravity, *_gravity2, *_gravity3;
     UICollisionBehavior* _collision, *_collison2, *_collison3;
     UIView *firstView;
+    SFBubbleView *_testBubble;
 }
 
 - (void)viewDidLoad
@@ -25,7 +26,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+   // UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+  // tapGestureRecognizer.delegate = self;
     
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
@@ -34,7 +36,7 @@
     _collision.translatesReferenceBoundsIntoBoundary = YES;
     [_animator addBehavior:_collision];
 
-    
+    //Creating bubbles and sub-bubbles
     for (int i = 0; i < 6; i++)
     {
         CGFloat xPos = arc4random_uniform(300);
@@ -44,6 +46,7 @@
         
         CGRect viewRect = CGRectMake (xPos, yPos, width, height);
         SFBubbleView *newView = [[SFBubbleView alloc] initWithFrame:viewRect];
+        //[newView addGestureRecognizer:tapGestureRecognizer];
         [self.view addSubview:newView];
         [_gravity addItem:newView];
         [_collision addItem:newView];
@@ -146,7 +149,7 @@
     
     [super viewDidAppear:animated];
     
-    [self startMyMotionDetect];
+    //[self startMyMotionDetect];
     
 }
 
@@ -171,17 +174,20 @@
     [alertview show];
 }
 
-- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
-{
-    //Code to handle the gesture
-    [self bubblePop];
-    for (UIView *subview in [firstView subviews]) {
-        [self.view addSubview:subview];
-        [_gravity addItem:subview];
-        [_collision addItem:subview];
-    }
-    [firstView removeFromSuperview];
-}
+//- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+//{
+//    //Code to handle the gesture
+//    [self bubblePop];
+//    for (UIView *subview in [recognizer.self.view subviews]) {
+//        [self.view addSubview:subview];
+//        [_gravity addItem:subview];
+//        [_collision addItem:subview];
+//    }
+////    [firstView removeFromSuperview];
+//    [recognizer.self.view removeFromSuperview];
+//    
+//    NSLog(@"%@", recognizer);
+//}
 
 - (CMMotionManager *)motionManager
 {
@@ -196,54 +202,49 @@
     return motionManager;
 }
 
-- (void)startMyMotionDetect
-{
-    
-    __block float stepMoveFactor = 15;
-    
-    [self.motionManager
-     startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
-     withHandler:^(CMAccelerometerData *data, NSError *error)
-     {
-         
-         dispatch_async(dispatch_get_main_queue(),
-                        ^{
-                            
-                            CGRect rect = self.movingView.frame;
-                            //CGRect rect = firstView.frame;
-                            
-                            float movetoX = rect.origin.x + (data.acceleration.x * stepMoveFactor);
-                            float maxX = self.view.frame.size.width - rect.size.width;
-                            
-                            float movetoY = (rect.origin.y + rect.size.height)
-                            - (data.acceleration.y * stepMoveFactor);
-                            
-                            float maxY = self.view.frame.size.height;
-                            
-                            if ( movetoX > 0 && movetoX < maxX ) {
-                                rect.origin.x += (data.acceleration.x * stepMoveFactor);
-                            };
-                            
-                            if ( movetoY > 0 && movetoY < maxY ) {
-                                rect.origin.y -= (data.acceleration.y * stepMoveFactor);
-                            };
-                            
-                            [UIView animateWithDuration:0 delay:0
-                                                options:UIViewAnimationOptionCurveEaseInOut
-                                             animations:
-                             ^{
-                                 //self.movingView.frame = rect;
-                                // self.bubbleOne.frame = rect;
-                                 //firstView.frame = rect;
-                             }
-                                             completion:nil
-                             ];
-                            
-                        }
-                        );
-     }
-     ];
-    
+//- (void)startMyMotionDetect
+//{
+//    __block float stepMoveFactor = 15;
+//    
+//    [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init]
+//                                             withHandler:^(CMAccelerometerData *data, NSError *error)
+//     {
+//         dispatch_async(dispatch_get_main_queue(),
+//                        ^{
+//                            //CGRect firstRect = CGRectMake(50, 50, 100, 100);
+//                            //_testBubble = [[SFBubbleView alloc] initWithFrame:firstRect];
+//                            
+//                            CGRect rect = self.movingView.frame;
+//                            
+//                            float movetoX = rect.origin.x + (data.acceleration.x * stepMoveFactor);
+//                            float maxX = self.view.frame.size.width - rect.size.width;
+//                            
+//                            float movetoY = (rect.origin.y + rect.size.height) - (data.acceleration.y * stepMoveFactor);
+//                            float maxY = self.view.frame.size.height;
+//                            
+//                            if ( movetoX > 0 && movetoX < maxX ) {rect.origin.x += (data.acceleration.x * stepMoveFactor);};
+//                            if ( movetoY > self.movingView.frame.size.height && movetoY < maxY ) {rect.origin.y -= (data.acceleration.y * stepMoveFactor);};
+//                            
+//                            [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:
+//                             ^{
+//                                 self.movingView.frame = rect;
+//                                 
+//                                 
+//                             }
+//                                             completion:nil
+//                             
+//                             ];
+//                            
+//                        });
+//     }
+//     ];
+//    
+//    
+//}
+
+- (void)viewDidUnload {
+    [self setMovingView:nil];
+    [super viewDidUnload];
 }
 
 @end
