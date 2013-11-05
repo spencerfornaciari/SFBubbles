@@ -39,6 +39,9 @@
         self.bubCollision = [[UICollisionBehavior alloc] initWithItems:nil];
         self.bubCollision.translatesReferenceBoundsIntoBoundary = YES;
         [self.bubAnimator addBehavior:self.bubCollision];
+        self.bubItemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:nil];
+        self.bubItemBehaviour.elasticity = 1.0;
+        [self.bubAnimator addBehavior:self.bubItemBehaviour];
         
         
         //Create sub-bubbles
@@ -56,6 +59,7 @@
             [self addSubview:newView];
             [self.bubGravity addItem:newView];
             [self.bubCollision addItem:newView];
+            [self.bubItemBehaviour addItem:newView];
             
         }
     }

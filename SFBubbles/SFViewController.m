@@ -17,6 +17,7 @@
     UIDynamicAnimator* _animator;
     UIGravityBehavior* _gravity;
     UICollisionBehavior* _collision;
+    UIDynamicItemBehavior *_itemBehaviour;
     NSMutableArray *_bubblesArray;
 }
 
@@ -55,6 +56,10 @@
     _collision = [[UICollisionBehavior alloc] initWithItems:nil];
     _collision.translatesReferenceBoundsIntoBoundary = YES;
     [_animator addBehavior:_collision];
+    
+    _itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:nil];
+    _itemBehaviour.elasticity = 1.1;
+    [_animator addBehavior:_itemBehaviour];
     
 //    [_gravity addItem:self.bubbleOne];
 //    [_collision addItem:self.bubbleOne];
@@ -123,6 +128,7 @@
         [self.view addSubview:newView];
         [_gravity addItem:newView];
         [_collision addItem:newView];
+        [_itemBehaviour addItem:newView];
     }
 }
 

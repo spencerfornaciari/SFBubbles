@@ -21,6 +21,8 @@
 @property (strong, nonatomic) UIDynamicAnimator *bubAnimator;
 @property (strong, nonatomic) UIGravityBehavior *bubGravity;
 @property (strong, nonatomic) UICollisionBehavior *bubCollision;
+@property (strong, nonatomic) UIDynamicItemBehavior *bubItemBehaviour;
+
 
 -(void)bubblePop;
 -(void)handleTapFrom:(UITapGestureRecognizer *)recognizer;
