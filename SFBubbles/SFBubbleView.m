@@ -54,8 +54,6 @@
             newView.backgroundColor = [UIColor getRandomColor];
             newView.layer.cornerRadius = 5.f;
             [self addSubview:newView];
-//            [_gravity addItem:newView];
-//            [_collision addItem:newView];
             [self.bubGravity addItem:newView];
             [self.bubCollision addItem:newView];
             

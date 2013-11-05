@@ -25,16 +25,17 @@
     [super viewDidLoad];
     _bubblesArray = [[NSMutableArray alloc] init];
     
-    CGRect firstRect = CGRectMake(50, 50, 125, 136);
-    self.bubbleOne = [[SFBubbleView alloc] initWithFrame:firstRect];
-    self.bubbleOne.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:self.bubbleOne];
-    [_bubblesArray addObject:self.bubbleOne];
-
+//    CGRect firstRect = CGRectMake(50, 50, 100, 100);
+//    self.bubbleOne = [[SFBubbleView alloc] initWithFrame:firstRect];
+//    self.bubbleOne.backgroundColor = [UIColor orangeColor];
+//    [self.view addSubview:self.bubbleOne];
+//    [_bubblesArray addObject:self.bubbleOne];
+//
 //    CGRect secondRect = CGRectMake(0, 0, 50, 50);
 //    self.bubbleTwo = [[SFBubbleView alloc] initWithFrame:secondRect];
 //    self.bubbleTwo.backgroundColor = [UIColor blueColor];
 //    [self.view addSubview:self.bubbleTwo];
+//    [_bubblesArray addObject:self.bubbleTwo];
     
 
 //    [_gravity addItem:self.bubbleTwo];
@@ -55,11 +56,11 @@
     _collision.translatesReferenceBoundsIntoBoundary = YES;
     [_animator addBehavior:_collision];
     
-    [_gravity addItem:self.bubbleOne];
-    [_collision addItem:self.bubbleOne];
+//    [_gravity addItem:self.bubbleOne];
+//    [_collision addItem:self.bubbleOne];
     
     //Creating bubbles and sub-bubbles
-//    [self createBubbles];
+    [self createBubbles];
     
 //    NSLog(@"There are currently %d subviews", self.view.subviews.count);
 //    NSLog(@"The subviews are currently: %@", self.view.subviews.description);
@@ -105,6 +106,8 @@
     [self createBubbles];
 }
 
+
+//Original creator of bubbles
 -(void)createBubbles
 {
     for (int i = 0; i < 6; i++)
@@ -123,13 +126,9 @@
     }
 }
 
+//Changes the shape of the bubbles/sub-bubbles
 -(IBAction)createBubbleButton:(id)sender
 {
-//    for (UIView *v in self.view.subviews) {
-//        [v removeFromSuperview];
-//    }
-    //[self createBubbles];
-    
     for (SFBubbleView *view in _bubblesArray)
     {
         CABasicAnimation *changeShape = [CABasicAnimation animationWithKeyPath:@"shape"];
@@ -194,7 +193,7 @@
                         ^{
                             
                             CGRect rect = self.bubbleOne.frame;
-                            NSLog(@"%@", NSStringFromCGRect(rect));
+                            //NSLog(@"%@", NSStringFromCGRect(rect));
                             
                             float movetoX = rect.origin.x + (data.acceleration.x * stepMoveFactor);
                             float maxX = self.view.frame.size.width - rect.size.width;
@@ -210,11 +209,30 @@
                                  self.bubbleOne.frame = rect;
                                  //self.bubbleTwo.frame = rect;
                                  
-                                 for (int i = 0; i < _bubblesArray.count; i++)
-                                 {
-                                     NSLog(@"%@", _bubblesArray[i]);
-                                 }
                                  
+                             }
+                                             completion:nil
+                             
+                             ];
+                            
+                        });
+         dispatch_async(dispatch_get_main_queue(),
+                        ^{
+                            
+                            CGRect rect = self.bubbleTwo.frame;
+                            
+                            float movetoX = rect.origin.x + (data.acceleration.x * stepMoveFactor);
+                            float maxX = self.view.frame.size.width - rect.size.width;
+                            
+                            float movetoY = (rect.origin.y + rect.size.height) - (data.acceleration.y * stepMoveFactor);
+                            float maxY = self.view.frame.size.height;
+                            
+                            if ( movetoX > 0 && movetoX < maxX ) {rect.origin.x += (data.acceleration.x * stepMoveFactor);};
+                            if ( movetoY > self.movingView.frame.size.height && movetoY < maxY ) {rect.origin.y -= (data.acceleration.y * stepMoveFactor);};
+                            
+                            [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:
+                             ^{
+                                 self.bubbleTwo.frame = rect;
                              }
                                              completion:nil
                              
