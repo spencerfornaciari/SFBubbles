@@ -14,21 +14,38 @@
 
 @implementation SFViewController
 {
-    UIDynamicAnimator* _animator, *_animator2, *_animator3;
-    UIGravityBehavior* _gravity, *_gravity2, *_gravity3;
-    UICollisionBehavior* _collision, *_collison2, *_collison3;
-    UIView *firstView;
-    SFBubbleView *_testBubble;
+    UIDynamicAnimator* _animator;
+    UIGravityBehavior* _gravity;
+    UICollisionBehavior* _collision;
+    NSMutableArray *_bubblesArray;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _bubblesArray = [[NSMutableArray alloc] init];
+    
     CGRect firstRect = CGRectMake(50, 50, 125, 136);
     self.bubbleOne = [[SFBubbleView alloc] initWithFrame:firstRect];
     self.bubbleOne.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:self.bubbleOne];
-	// Do any additional setup after loading the view, typically from a nib.
+    [_bubblesArray addObject:self.bubbleOne];
+
+//    CGRect secondRect = CGRectMake(0, 0, 50, 50);
+//    self.bubbleTwo = [[SFBubbleView alloc] initWithFrame:secondRect];
+//    self.bubbleTwo.backgroundColor = [UIColor blueColor];
+//    [self.view addSubview:self.bubbleTwo];
+    
+
+//    [_gravity addItem:self.bubbleTwo];
+//    [_collision addItem:self.bubbleTwo];
+
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     //Creating gravity and collision for the bubbles
     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
@@ -40,19 +57,13 @@
     
     [_gravity addItem:self.bubbleOne];
     [_collision addItem:self.bubbleOne];
-
+    
     //Creating bubbles and sub-bubbles
-    [self createBubbles];
-
-    // Do any additional setup after loading the view, typically from a nib
-
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    //NSLog(@"The subvies are currently: %@", self.view.subviews.description);
-
+//    [self createBubbles];
+    
+//    NSLog(@"There are currently %d subviews", self.view.subviews.count);
+//    NSLog(@"The subviews are currently: %@", self.view.subviews.description);
+//    NSLog(@"The array has %d subviews", _bubblesArray.count);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -62,9 +73,9 @@
     
     //NSLog(@"There are currently: %d subviews", self.view.subviews.count);
     
-    if (self.view.subviews.count < 3) {
-        [self bubblesAllPopped];
-    }
+//    if (self.view.subviews.count == 0) {
+//        [self bubblesAllPopped];
+//    }
     
     [self startMyMotionDetect];
     
@@ -99,29 +110,60 @@
     for (int i = 0; i < 6; i++)
     {
         CGFloat xPos = arc4random_uniform(300);
-        CGFloat yPos = arc4random_uniform(300);
-        CGFloat width = 100;
-        CGFloat height = 100;
+        CGFloat yPos = arc4random_uniform(400);
+        CGFloat width = 75;
+        CGFloat height = 75;
         
         CGRect viewRect = CGRectMake (xPos, yPos, width, height);
         SFBubbleView *newView = [[SFBubbleView alloc] initWithFrame:viewRect];
+        [_bubblesArray addObject:newView];
         [self.view addSubview:newView];
         [_gravity addItem:newView];
         [_collision addItem:newView];
     }
 }
 
+-(IBAction)createBubbleButton:(id)sender
+{
+//    for (UIView *v in self.view.subviews) {
+//        [v removeFromSuperview];
+//    }
+    //[self createBubbles];
+    
+    for (SFBubbleView *view in _bubblesArray)
+    {
+        CABasicAnimation *changeShape = [CABasicAnimation animationWithKeyPath:@"shape"];
+        changeShape.fromValue = [NSValue valueWithCGRect:view.layer.bounds];
+        changeShape.toValue = [NSValue valueWithCGRect:CGRectMake(50, 50, 50, 50)];
+        changeShape.duration = 4.0;
+        view.backgroundColor = [UIColor getRandomColor];
+        [view.layer addAnimation:changeShape forKey:@"shape"];
+        view.layer.bounds = CGRectMake(50, 50, 50, 50);
+        
+        //Bubbles location doesn't remain within the bounds of the outer bubble
+        for (UIView *bubView in view.subviews) {
+            CABasicAnimation *changeShape = [CABasicAnimation animationWithKeyPath:@"shape"];
+            changeShape.fromValue = [NSValue valueWithCGRect:bubView.layer.bounds];
+            changeShape.toValue = [NSValue valueWithCGRect:CGRectMake(10, 10, 10, 10)];
+            changeShape.duration = 4.0;
+            bubView.backgroundColor = [UIColor getRandomColor];
+            [bubView.layer addAnimation:changeShape forKey:@"shape"];
+            bubView.layer.bounds = CGRectMake(10, 10, 10, 10);
+        }
+    }
+}
+
 //- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
 //{
 //    //Code to handle the gesture
-//    [self bubblePop];
-//    for (UIView *subview in [recognizer.self.view subviews]) {
-//        [self.view addSubview:subview];
-//        [_gravity addItem:subview];
-//        [_collision addItem:subview];
-//    }
+//    //[self bubblePop];
+//    for (UIView *subview in recognizer.self.view.subviews) {
+////        [self.view addSubview:subview];
+////        [_gravity addItem:subview];
+////        [_collision addItem:subview];
+////    }
 ////    [firstView removeFromSuperview];
-//    [recognizer.self.view removeFromSuperview];
+//        [recognizer.self.view.superview removeFromSuperview];}
 //    
 //    NSLog(@"%@", recognizer);
 //}
@@ -166,6 +208,13 @@
                             [UIView animateWithDuration:0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:
                              ^{
                                  self.bubbleOne.frame = rect;
+                                 //self.bubbleTwo.frame = rect;
+                                 
+                                 for (int i = 0; i < _bubblesArray.count; i++)
+                                 {
+                                     NSLog(@"%@", _bubblesArray[i]);
+                                 }
+                                 
                              }
                                              completion:nil
                              
@@ -177,6 +226,8 @@
     
     
 }
+
+
 
 
 - (void)viewDidUnload {

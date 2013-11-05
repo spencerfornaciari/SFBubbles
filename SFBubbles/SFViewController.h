@@ -11,16 +11,20 @@
 #import "SFBubbleView.h"
 #import "UIColor+ColorAddons.h"
 
-@interface SFViewController : UIViewController
+@interface SFViewController : UIViewController <SFBubbleViewDelegate>
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) IBOutlet UIView *movingView;
 @property (strong, nonatomic) SFBubbleView *bubbleOne;
-@property (strong, nonatomic) IBOutlet SFBubbleView *bubbleTwo;
+@property (strong, nonatomic) SFBubbleView *bubbleTwo;
 
 @property (readonly) BOOL accelerometerAvailable;
 @property (readonly) BOOL gyroAvailable;
 @property (readonly) BOOL deviceMotionAvailable;
+
+@property (strong, nonatomic) IBOutlet UIButton *createButton;
+
+-(IBAction)createBubbleButton:(id)sender;
 
 -(void)bubblesAllPopped;
 -(void)createBubbles;

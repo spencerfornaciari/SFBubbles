@@ -10,9 +10,9 @@
 
 @implementation SFBubbleView
 {
-    UIDynamicAnimator *_animator;
-    UIGravityBehavior *_gravity;
-    UICollisionBehavior *_collision;
+//    UIDynamicAnimator *_animator;
+//    UIGravityBehavior *_gravity;
+//    UICollisionBehavior *_collision;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -26,12 +26,19 @@
         
 
         //Add Gravity and collision support for the bubble
-        _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
-        _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
-        [_animator addBehavior:_gravity];
-        _collision = [[UICollisionBehavior alloc] initWithItems:nil];
-        _collision.translatesReferenceBoundsIntoBoundary = YES;
-        [_animator addBehavior:_collision];
+//        _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
+//        _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
+//        [_animator addBehavior:_gravity];
+//        _collision = [[UICollisionBehavior alloc] initWithItems:nil];
+//        _collision.translatesReferenceBoundsIntoBoundary = YES;
+//        [_animator addBehavior:_collision];
+        
+        self.bubAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
+        self.bubGravity = [[UIGravityBehavior alloc] initWithItems:nil];
+        [self.bubAnimator addBehavior:self.bubGravity];
+        self.bubCollision = [[UICollisionBehavior alloc] initWithItems:nil];
+        self.bubCollision.translatesReferenceBoundsIntoBoundary = YES;
+        [self.bubAnimator addBehavior:self.bubCollision];
         
         
         //Create sub-bubbles
@@ -47,8 +54,11 @@
             newView.backgroundColor = [UIColor getRandomColor];
             newView.layer.cornerRadius = 5.f;
             [self addSubview:newView];
-            [_gravity addItem:newView];
-            [_collision addItem:newView];
+//            [_gravity addItem:newView];
+//            [_collision addItem:newView];
+            [self.bubGravity addItem:newView];
+            [self.bubCollision addItem:newView];
+            
         }
     }
     
@@ -57,6 +67,7 @@
     self.backgroundColor = [UIColor getRandomColor];
     return self;
 }
+
 
 
 //Create a pop up alert when the bubbles are popped
@@ -71,11 +82,12 @@
 {
     //Code to handle the gesture
     [self bubblePop];
-//    for (UIView *subview in [recognizer.self.view subviews]) {
-//        [self.view addSubview:subview];
+    for (UIView *subview in [recognizer.self.view subviews]) {
+        [recognizer.self.view.superview addSubview:subview];
 //        [_gravity addItem:subview];
 //        [_collision addItem:subview];
-//    }
+        
+    }
     [recognizer.self.view removeFromSuperview];
     
    // NSLog(@"%@", recognizer);
