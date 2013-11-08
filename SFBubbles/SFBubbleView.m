@@ -55,7 +55,7 @@
             CGRect viewRect = CGRectMake (xPos, yPos, width, height);
             UIView *newView = [[UIView alloc] initWithFrame:viewRect];
             newView.backgroundColor = [UIColor getRandomColor];
-            newView.layer.cornerRadius = 5.f;
+            newView.layer.cornerRadius = 10.f;
             [self addSubview:newView];
             [self.bubGravity addItem:newView];
             [self.bubCollision addItem:newView];
@@ -65,7 +65,8 @@
     }
     
     //Define attributes of the bubble
-    self.layer.cornerRadius = 25.f;
+    self.layer.cornerRadius = 37.f;
+    self.layer.masksToBounds = YES;
     self.backgroundColor = [UIColor getRandomColor];
     return self;
 }
@@ -84,12 +85,12 @@
 {
     //Code to handle the gesture
     [self bubblePop];
-    for (UIView *subview in [recognizer.self.view subviews]) {
-        [recognizer.self.view.superview addSubview:subview];
+//    for (UIView *subview in [recognizer.self.view subviews]) {
+//        [recognizer.self.view.superview addSubview:subview];
 //        [_gravity addItem:subview];
 //        [_collision addItem:subview];
         
-    }
+//    }
     [recognizer.self.view removeFromSuperview];
     
    // NSLog(@"%@", recognizer);
