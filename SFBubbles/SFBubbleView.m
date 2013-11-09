@@ -19,19 +19,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        //Create tap responder
-        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
-        tapGestureRecognizer.numberOfTapsRequired = 1;
-        [self addGestureRecognizer:tapGestureRecognizer];
-        
 
         //Add Gravity and collision support for the bubble
-//        _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
-//        _gravity = [[UIGravityBehavior alloc] initWithItems:nil];
-//        [_animator addBehavior:_gravity];
-//        _collision = [[UICollisionBehavior alloc] initWithItems:nil];
-//        _collision.translatesReferenceBoundsIntoBoundary = YES;
-//        [_animator addBehavior:_collision];
         
         self.bubAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
         self.bubGravity = [[UIGravityBehavior alloc] initWithItems:nil];
@@ -69,31 +58,6 @@
     self.layer.masksToBounds = YES;
     self.backgroundColor = [UIColor getRandomColor];
     return self;
-}
-
-
-
-//Create a pop up alert when the bubbles are popped
--(void)bubblePop
-{
-    UIAlertView *alertview = [[UIAlertView alloc] initWithTitle:@"Hurray!" message:@"You've popped a bubble" delegate:self cancelButtonTitle:@"Do it Again?" otherButtonTitles:nil, nil];
-    [alertview show];
-}
-
-//Call bubble pop alert message and remove it from the sub-view
--(void)handleTapFrom:(UITapGestureRecognizer *)recognizer
-{
-    //Code to handle the gesture
-    [self bubblePop];
-//    for (UIView *subview in [recognizer.self.view subviews]) {
-//        [recognizer.self.view.superview addSubview:subview];
-//        [_gravity addItem:subview];
-//        [_collision addItem:subview];
-        
-//    }
-    [recognizer.self.view removeFromSuperview];
-    
-   // NSLog(@"%@", recognizer);
 }
 
 @end

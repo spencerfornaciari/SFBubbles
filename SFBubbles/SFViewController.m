@@ -57,9 +57,9 @@
     _collision.translatesReferenceBoundsIntoBoundary = YES;
     [_animator addBehavior:_collision];
     
-    _itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:nil];
-    _itemBehaviour.elasticity = 1.1;
-    [_animator addBehavior:_itemBehaviour];
+    //_itemBehaviour = [[UIDynamicItemBehavior alloc] initWithItems:nil];
+    //_itemBehaviour.elasticity = 1.1;
+    //[_animator addBehavior:_itemBehaviour];
     
 //    [_gravity addItem:self.bubbleOne];
 //    [_collision addItem:self.bubbleOne];
@@ -128,7 +128,7 @@
         [self.view addSubview:newView];
         [_gravity addItem:newView];
         [_collision addItem:newView];
-        [_itemBehaviour addItem:newView];
+        //[_itemBehaviour addItem:newView];
     }
 }
 
@@ -157,21 +157,6 @@
         }
     }
 }
-
-//- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
-//{
-//    //Code to handle the gesture
-//    //[self bubblePop];
-//    for (UIView *subview in recognizer.self.view.subviews) {
-////        [self.view addSubview:subview];
-////        [_gravity addItem:subview];
-////        [_collision addItem:subview];
-////    }
-////    [firstView removeFromSuperview];
-//        [recognizer.self.view.superview removeFromSuperview];}
-//    
-//    NSLog(@"%@", recognizer);
-//}
 
 #pragma mark - Core Motion Code
 
