@@ -141,6 +141,7 @@
         changeShape.fromValue = [NSValue valueWithCGRect:view.layer.bounds];
         changeShape.toValue = [NSValue valueWithCGRect:CGRectMake(50, 50, 50, 50)];
         changeShape.duration = 4.0;
+        view.layer.cornerRadius = 0;
         view.backgroundColor = [UIColor getRandomColor];
         [view.layer addAnimation:changeShape forKey:@"shape"];
         view.layer.bounds = CGRectMake(50, 50, 50, 50);
@@ -151,6 +152,7 @@
             changeShape.fromValue = [NSValue valueWithCGRect:bubView.layer.bounds];
             changeShape.toValue = [NSValue valueWithCGRect:CGRectMake(10, 10, 10, 10)];
             changeShape.duration = 4.0;
+            bubView.layer.cornerRadius = 0;
             bubView.backgroundColor = [UIColor getRandomColor];
             [bubView.layer addAnimation:changeShape forKey:@"shape"];
             bubView.layer.bounds = CGRectMake(10, 10, 10, 10);
