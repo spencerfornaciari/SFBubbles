@@ -25,8 +25,6 @@
 {
     [super viewDidLoad];
     _bubblesArray = [[NSMutableArray alloc] init];
-    //UITouch *bubbleTouch = [[UITouch alloc] init];
-
     
 //    CGRect firstRect = CGRectMake(50, 50, 100, 100);
 //    self.bubbleOne = [[SFBubbleView alloc] initWithFrame:firstRect];
