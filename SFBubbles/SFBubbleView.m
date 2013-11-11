@@ -19,6 +19,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        tapGesture.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tapGesture];
 
         //Add Gravity and collision support for the bubble
         
@@ -58,6 +62,11 @@
     self.layer.masksToBounds = YES;
     self.backgroundColor = [UIColor getRandomColor];
     return self;
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)recognizer
+{
+    [recognizer.self.view removeFromSuperview];
 }
 
 @end
