@@ -23,6 +23,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        tapGesture.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:tapGesture];
 
         //Add Gravity and collision support for the bubble
         self.bubAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
@@ -63,6 +67,7 @@
     return self;
 }
 
+<<<<<<< HEAD
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //Setup bubble touch move pre-requisites
@@ -132,6 +137,11 @@
     _dragging = NO;
     _frameWidth = 0.0;
     _frameHeight = 0.0;
+=======
+- (void)handleTap:(UITapGestureRecognizer *)recognizer
+{
+    [recognizer.self.view removeFromSuperview];
+>>>>>>> 30c32944e41317ac565a55c38adac43ed399c6b2
 }
 
 @end
