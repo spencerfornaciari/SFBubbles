@@ -65,71 +65,64 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    //Setup bubble touch move pre-requisites
     _dragging = YES;
     UITouch *touch = [[event allTouches] anyObject];
     _offset = [touch locationInView:self];
-    NSLog(@"Offset: %f", _offset.x);
     _startLocation = [touch locationInView:self.superview];
     _frameWidth = self.frame.size.width;
     _frameHeight = self.frame.size.height;
     _frameX =  self.superview.frame.size.width;
     _frameY = self.superview.frame.size.height;
-    //NSLog(@"%f", touch.view.frame.size.width);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self.superview];
-        //NSLog(@"Y: %f %f", CGRectGetMinY(self.frame), CGRectGetMaxY(self.frame));
-    //NSLog(@"%f", touchLocation.x);
 
+    //Determine new bubble position
     float xPos = touchLocation.x-_offset.x;
     float yPos = touchLocation.y-_offset.y;
     
+    //Check to see if bubble is within the bounds during move
+//        if (CGRectGetMinX(touch.view.frame) <= 0) {
+//    //        NSLog(@"%f", minX);
+//    //        //_dragging = NO;
+//            xPos = 0;
+//            NSLog(@"Out of Bounds");
+//    //        //self.frame = CGRectMake((touchLocation.x-_offset.x)+1, touchLocation.y-_offset.y, _frameWidth, _frameHeight);
+//        }
+//    //    //NSLog(@"Out of Bounds");
+//    //
+//    //    //}
+//    //
+//       if (CGRectGetMinY(touch.view.frame) <= 0) {
+//    //        //        NSLog(@"%f", minY);
+//           yPos = 0;
+//            NSLog(@"Out of Bounds");
+//    //        _dragging = NO;
+//        }
+//    
+//        if (CGRectGetMaxX(touch.view.frame) > _frameX) {
+//            xPos = self.superview.frame.size.width - 75;
+//    //        //        NSLog(@"%f", maxX);
+//            NSLog(@"Out of Bounds");
+//    //        //        _dragging = NO;
+//        }
+//        if (CGRectGetMaxY(touch.view.frame) > _frameY) {
+//          //NSLog(@"%f", CGRectGetMaxY(touch.view.frame));
+//            yPos = self.superview.frame.size.height - 75;
+//            NSLog(@"Out of Bounds");
+//    //        //        _dragging = NO;
+//        }
     
     
-        if (CGRectGetMinX(touch.view.frame) <= 0) {
-    //        NSLog(@"%f", minX);
-    //        //_dragging = NO;
-            xPos = 0;
-            NSLog(@"Out of Bounds");
-    //        //self.frame = CGRectMake((touchLocation.x-_offset.x)+1, touchLocation.y-_offset.y, _frameWidth, _frameHeight);
-        }
-    //    //NSLog(@"Out of Bounds");
-    //
-    //    //}
-    //
-       if (CGRectGetMinY(touch.view.frame) <= 0) {
-    //        //        NSLog(@"%f", minY);
-           yPos = 0;
-            NSLog(@"Out of Bounds");
-    //        _dragging = NO;
-        }
-    
-        if (CGRectGetMaxX(touch.view.frame) > _frameX) {
-            xPos = self.superview.frame.size.width - 75;
-    //        //        NSLog(@"%f", maxX);
-            NSLog(@"Out of Bounds");
-    //        //        _dragging = NO;
-        }
-        if (CGRectGetMaxY(touch.view.frame) > _frameY) {
-          //NSLog(@"%f", CGRectGetMaxY(touch.view.frame));
-            yPos = self.superview.frame.size.height - 75;
-            NSLog(@"Out of Bounds");
-    //        //        _dragging = NO;
-        }
-    
-    //NSLog(@"%f", xPos);
-    
+    //Draw new bubble during move
     if (_dragging)
     {
-        NSLog(@"%f", yPos);
         self.frame = CGRectMake(xPos, yPos, _frameWidth, _frameHeight);
-
     }
-    
-
 
 }
 

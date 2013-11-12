@@ -115,7 +115,7 @@
 //Original creator of bubbles
 -(void)createBubbles
 {
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 5; i++)
     {
         CGFloat xPos = arc4random_uniform(300);
         CGFloat yPos = arc4random_uniform(400);
