@@ -67,7 +67,6 @@
     return self;
 }
 
-<<<<<<< HEAD
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //Setup bubble touch move pre-requisites
@@ -132,16 +131,15 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-
 {
     _dragging = NO;
     _frameWidth = 0.0;
     _frameHeight = 0.0;
-=======
+}
+
 - (void)handleTap:(UITapGestureRecognizer *)recognizer
 {
     [recognizer.self.view removeFromSuperview];
->>>>>>> 30c32944e41317ac565a55c38adac43ed399c6b2
 }
 
 @end
