@@ -117,8 +117,8 @@
 {
     for (int i = 0; i < 5; i++)
     {
-        CGFloat xPos = arc4random_uniform(300);
-        CGFloat yPos = arc4random_uniform(400);
+        CGFloat xPos = arc4random_uniform(260);
+        CGFloat yPos = arc4random_uniform(410);
         CGFloat width = 75;
         CGFloat height = 75;
         
