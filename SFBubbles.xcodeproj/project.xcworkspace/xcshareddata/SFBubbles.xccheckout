@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AC6A2BBE-E1CA-4372-85F5-CEB5D3B4DA45</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SFBubbles</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5A52A7B1-FA68-4099-A96E-0377648654D9</key>
+		<string>https://github.com/spencerfornaciari/SFBubbles.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SFBubbles.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5A52A7B1-FA68-4099-A96E-0377648654D9</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/spencerfornaciari/SFBubbles.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5A52A7B1-FA68-4099-A96E-0377648654D9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5A52A7B1-FA68-4099-A96E-0377648654D9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SFBubbles</string>
+		</dict>
+	</array>
+</dict>
+</plist>
